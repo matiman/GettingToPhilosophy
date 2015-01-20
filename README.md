@@ -30,5 +30,25 @@ The API I wrote in Java fetches this data, parse it to find the first link store
 If the path already exists in the database it will return that path instead of fetching the data from wiki api which
 is a bit faster. 
 The database schema I used is pretty simple( though I believe there is a bettwer which I will explain latter)
-SCHEMA: Table name 
+SCHEMA: 
+CREATE TABLE philosophy(
+   title CHAR(50) PRIMARY KEY     NOT NULL,
+   path         TEXT    NOT NULL
+);
+I have checked that all the title names are different(from the 50 pages I saw). So I made title to be the primary key.
+When I find a title of a page, first I check the database and if it exists I printit out if not I fetch the wiki text and process it unti I reach to philosophy. For the first few users who will use the API, it will cost them time since I have to fetch from wiki and save to db but once I have a lot of data loaded in it, once you come and search the title, you will most likely find it in DB so it will save us from hitting the wiki api. 
 
+There is a match faster way to do this( since time was a constraint I haven't implemented it). Here is one problem with this approach. 
+For e.g we have a titlel X( for simplicity) then X's first link Y. Then Y's first link is Z and so on.
+X->Y->Z>A->B->Philosophy. Now we have a data like this in our table
+title   Path
+X       [X,Y,Z,A,B,Philosophy]
+If someone comes and try to find the path from X>Philsophy, Voila ! We have it so we can give it back to him. But if someone comes and look for Z? Now we hace to fetch wiki api again to find the path and store. The efficient way to do this would be, in my opinion, to store a title and its next path. So for the above scenario, our table should look like
+title  next
+X       Y
+Y       Z
+Z       A
+A       B
+B    Philosophy.
+
+This way when future users come, we not only serve for X from the database but also for the other titles(Y,Z,A,B).
