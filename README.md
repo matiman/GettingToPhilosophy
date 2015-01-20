@@ -22,6 +22,8 @@ Think about how to handle if/when you get stuck in a loop
 Find out how to ignore citations/sound/extraneous links
 
 ===========================================Solution==========================================
+You can find the API(the solution I did) here https://github.com/matiman/GettingToPhilosophy/tree/master/src/com/mathi/philosophy
+
 In order to see how this API works try to look at the following link http://www.xefer.com/wikipedia.
 Type a title and it will show you a path to philosophy page.
 
