@@ -1,5 +1,27 @@
 # GettingToPhilosophy
+Getting To Philosophy
 
+
+ Objective
+
+Your goal is to build a front-end form that takes an input of a Wikipedia URL and interacts with a back-end API you’ve built. It will store the data in a database you’ve designed, and print out the path taken from clicking the first link of each page to get to Philosophy.
+
+
+The API should take a single Wikipedia link as input, should visit the given page, and keep going through the first link on each next page until Philosophy is reached. The path taken should be stored in the database with a unique identifier for any given path. The front-end should display the path taken to reach Philosophy. It should also display the amount of hops it took to get to the page.
+
+ Here’s some more reading about how the back-end should work: “Getting to Philosophy”.
+ Design of the form isn’t important. But code quality is.
+
+
+ Some hints
+
+Because not every single link will lead to Philosophy, think about defining a maximum number of hops
+
+Think about how to handle if/when you get stuck in a loop
+
+Find out how to ignore citations/sound/extraneous links
+
+===========================================Solution==========================================
 In order to see how this API works try to look at the following link http://www.xefer.com/wikipedia.
 Type a title and it will show you a path to philosophy page.
 
